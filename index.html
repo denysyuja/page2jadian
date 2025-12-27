@@ -61,18 +61,17 @@
             border-radius: 10px;
         }
 
+        /* VIDEO */
         .video-container {
-            position: relative;
-            padding-bottom: 56.25%;
-            height: 0;
-            overflow: hidden;
-            border-radius: 10px;
+            width: 100%;
+            margin-top: 10px;
         }
 
         .video-container iframe {
-            position: absolute;
             width: 100%;
-            height: 100%;
+            height: 260px;
+            border-radius: 10px;
+            border: none;
         }
 
         .nav-btns {
@@ -93,6 +92,35 @@
 
         button:hover { background: #ff758f; }
         button:disabled { background: #ccc; }
+
+        /* ===== MOBILE RESPONSIVE ===== */
+        @media (max-width: 480px) {
+            .notebook {
+                max-width: 90%;
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            p {
+                font-size: 13px;
+            }
+
+            .video-container iframe {
+                height: 200px;
+            }
+
+            .photo-grid img {
+                height: 100px;
+            }
+
+            button {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -102,20 +130,24 @@
     <!-- PAGE 1 -->
     <div class="page active" id="p1">
         <h2>Yayy makasih yaa! ❤️</h2>
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3VsdmExandpdGlraHliNTN0ZmZremx0NGNseTMzcjU3M3hzMXM1NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/16bJmyPvRbCDu/giphy.gif" width="150">
+        <img src="https://media.giphy.com/media/16bJmyPvRbCDu/giphy.gif" width="150">
         <p>Makasih ya udah mau nerima aku 🤍</p>
         <p><i>Geser ke halaman berikutnya ya...</i></p>
     </div>
 
     <!-- PAGE 2 -->
-    <div class="video-container">
-    <iframe 
-        src="https://www.youtube.com/embed/m-BOSbljzkg?si=EenuFCNYnOkHytX7"
-        frameborder="0"
-        allowfullscreen>
-    </iframe>
-    </div>
-        <p> This video is for u mommy, from ur baby 🥺</p>
+    <div class="page" id="p2">
+        <h2>ini ada video yang udah aku buatin jugaa</h2>
+
+        <div class="video-container">
+            <iframe 
+                src="https://drive.google.com/file/d/FILE_ID/preview"
+                allow="autoplay"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <p>This video is for u mommy, from ur baby 🥺</p>
     </div>
 
     <!-- PAGE 3 -->
@@ -131,10 +163,9 @@
 
         <p>Ini ada soundtrack yang bisa kamu nyalain yaa</p>
 
-        <!-- SPOTIFY EMBED -->
         <iframe
             style="border-radius:12px"
-            src="https://open.spotify.com/embed/playlist/00h76MrPxPEVXQKyqTDEAb?utm_source=generator"
+            src="https://open.spotify.com/embed/playlist/00h76MrPxPEVXQKyqTDEAb"
             width="100%"
             height="152"
             frameborder="0"
@@ -157,22 +188,18 @@
         document.getElementById(`p${currentPage}`).classList.remove("active");
         currentPage += step;
         document.getElementById(`p${currentPage}`).classList.add("active");
-
         updateButtons();
     }
 
     function handleBack() {
         if (currentPage === 1) {
-            // Kalau di halaman pertama → balik ke web1.html
-            window.location.href = "https://denysyuja.github.io/page1jadian/";
+            window.location.href = "https://denysyuja.github.io/page2jadian/";
         } else {
             changePage(-1);
         }
     }
 
     function updateButtons() {
-        document.getElementById("prevBtn").disabled = false;
-
         if (currentPage === totalPages) {
             document.getElementById("nextBtn").innerText = "Selesai ❤️";
             document.getElementById("nextBtn").onclick = () => {
@@ -186,9 +213,4 @@
 </script>
 
 </body>
-
 </html>
-
-
-
-
