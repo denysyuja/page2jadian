@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Special Album</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+            url('https://i.pinimg.com/736x/5f/33/9e/5f339ec4c7ca8458c7e834ae32159a48.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .notebook {
+            width: 100%;
+            max-width: 400px;
+            min-height: 550px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 15px 15px 0px rgba(255,182,193,0.8);
+            border: 3px solid #ffb6c1;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Indie Flower', cursive;
+            color: #ff4d6d;
+        }
+
+        p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .page { display: none; }
+        .active { display: block; }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-btns {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: none;
+            background: #ff4d6d;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover { background: #ff758f; }
+        button:disabled { background: #ccc; }
+    </style>
+</head>
+<body>
+
+<div class="notebook">
+
+    <!-- PAGE 1 -->
+    <div class="page active" id="p1">
+        <h2>Yayy makasih yaa! ❤️</h2>
+        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3VsdmExandpdGlraHliNTN0ZmZremx0NGNseTMzcjU3M3hzMXM1NSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/16bJmyPvRbCDu/giphy.gif" width="150">
+        <p>Makasih ya udah mau nerima aku 🤍</p>
+        <p><i>Geser ke halaman berikutnya ya...</i></p>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page" id="p2">
+        <h2>ini ada video yang udah aku buatin jugaa</h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                frameborder="0"
+                allowfullscreen></iframe>
+        </div>
+        <p> This video is for u mommy, from ur baby 🥺</p>
+    </div>
+
+    <!-- PAGE 3 -->
+    <div class="page" id="p3">
+        <h2>Our Memories 💕</h2>
+
+        <div class="photo-grid">
+            <img src="https://via.placeholder.com/150">
+            <img src="https://via.placeholder.com/150">
+            <img src="https://via.placeholder.com/150">
+            <img src="https://via.placeholder.com/150">
+        </div>
+
+        <p>Ini ada soundtrack yang bisa kamu nyalain yaa</p>
+
+        <!-- SPOTIFY EMBED -->
+        <iframe
+            style="border-radius:12px"
+            src="https://open.spotify.com/embed/playlist/00h76MrPxPEVXQKyqTDEAb?utm_source=generator"
+            width="100%"
+            height="152"
+            frameborder="0"
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <div class="nav-btns">
+        <button id="prevBtn" onclick="handleBack()">Kembali</button>
+        <button id="nextBtn" onclick="changePage(1)">Lanjut</button>
+    </div>
+</div>
+
+<script>
+    let currentPage = 1;
+    const totalPages = 3;
+
+    function changePage(step) {
+        document.getElementById(`p${currentPage}`).classList.remove("active");
+        currentPage += step;
+        document.getElementById(`p${currentPage}`).classList.add("active");
+
+        updateButtons();
+    }
+
+    function handleBack() {
+        if (currentPage === 1) {
+            // Kalau di halaman pertama → balik ke web1.html
+            window.location.href = "web1.html";
+        } else {
+            changePage(-1);
+        }
+    }
+
+    function updateButtons() {
+        document.getElementById("prevBtn").disabled = false;
+
+        if (currentPage === totalPages) {
+            document.getElementById("nextBtn").innerText = "Selesai ❤️";
+            document.getElementById("nextBtn").onclick = () => {
+                alert("i love u mommy 💕");
+            };
+        } else {
+            document.getElementById("nextBtn").innerText = "Lanjut";
+            document.getElementById("nextBtn").onclick = () => changePage(1);
+        }
+    }
+</script>
+
+</body>
+</html>
